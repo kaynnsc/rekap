@@ -156,7 +156,7 @@ export default function App() {
     document.body.style.background = T.desk;
     document.documentElement.style.background = T.desk;
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#02080c" : "#232B5E");
+    if (meta) meta.setAttribute("content", dark ? "#12141D" : "#232B5E");
   }, [dark, T.desk]);
 
   const flashToast = (msg) => { setToast(msg); setTimeout(() => setToast(""), 2200); };
@@ -267,8 +267,7 @@ export default function App() {
   if (!dataLoaded || !data) return <>{themeCss}{spinner}</>;
 
   const attentionCount = data.orders.filter((o) => {
-    const st = warrantyInfo(o, data.settings).status;
-    return st === "expiring" || st === "expired";
+    return warrantyInfo(o, data.settings).status === "expiring";
   }).length;
 
   const TABS = [

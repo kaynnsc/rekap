@@ -91,7 +91,7 @@ export default function Dashboard({ T, data, onNavigate }) {
   const reminders = useMemo(() => {
     return orders
       .map((o) => ({ o, w: warrantyInfo(o, settings) }))
-      .filter(({ w }) => w.status === "expiring" || w.status === "expired")
+      .filter(({ w }) => w.status === "expiring")
       .sort((a, b) => a.w.hoursLeft - b.w.hoursLeft)
       .slice(0, 8);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -165,17 +165,6 @@ export default function Dashboard({ T, data, onNavigate }) {
         </button>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 18 }}>
-        <StatCard T={T} bg={T.sky} icon={<ShoppingCart size={18} />} label="Total orders" value={stats.totalOrders} color={T.accent} onClick={() => onNavigate(null)} />
-        <StatCard T={T} bg={T.mint} icon={<ShieldCheck size={18} />} label="Active warranty" value={stats.activeWarranty} color={T.positive} onClick={() => onNavigate({ type: "warranty" })} />
-        <StatCard T={T} bg={T.butter} icon={<Wallet size={18} />} label="Today's profit" value={formatIDR(stats.todaysProfit)} color={T.accent} onClick={() => onNavigate({ type: "today" })} />
-        <StatCard T={T} bg={T.peach} icon={<TrendingUp size={18} />} label="Monthly profit" value={formatIDR(stats.monthlyProfit)} color={T.positive} onClick={() => onNavigate({ type: "month" })} />
-      </div>
-
-      <Suspense fallback={<div style={{ height: 160, marginBottom: 16 }} />}>
-        <Charts T={T} last7DaysChart={last7DaysChart} appDistribution={appDistribution} />
-      </Suspense>
-
       {reminders.length > 0 && (
         <div style={{ marginBottom: 16 }}>
           <SectionTitle T={T} color={T.negative} icon={<AlertTriangle size={18} />} style={{ marginTop: 6 }}>
@@ -198,6 +187,17 @@ export default function Dashboard({ T, data, onNavigate }) {
           </div>
         </div>
       )}
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 18 }}>
+        <StatCard T={T} bg={T.sky} icon={<ShoppingCart size={18} />} label="Total orders" value={stats.totalOrders} color={T.accent} onClick={() => onNavigate(null)} />
+        <StatCard T={T} bg={T.mint} icon={<ShieldCheck size={18} />} label="Active warranty" value={stats.activeWarranty} color={T.positive} onClick={() => onNavigate({ type: "warranty" })} />
+        <StatCard T={T} bg={T.butter} icon={<Wallet size={18} />} label="Today's profit" value={formatIDR(stats.todaysProfit)} color={T.accent} onClick={() => onNavigate({ type: "today" })} />
+        <StatCard T={T} bg={T.peach} icon={<TrendingUp size={18} />} label="Monthly profit" value={formatIDR(stats.monthlyProfit)} color={T.positive} onClick={() => onNavigate({ type: "month" })} />
+      </div>
+
+      <Suspense fallback={<div style={{ height: 160, marginBottom: 16 }} />}>
+        <Charts T={T} last7DaysChart={last7DaysChart} appDistribution={appDistribution} />
+      </Suspense>
 
       <div style={{ fontSize: 12, fontWeight: 800, color: T.inkMuted, textAlign: "center", padding: "8px 0 20px" }}>
         All totals above are calculated automatically from your order list.
