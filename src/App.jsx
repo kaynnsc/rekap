@@ -92,7 +92,7 @@ function LoginLaptop({ T, dark, setDark, pwInput, setPwInput, loginError, onLogi
               <div style={{ fontSize: 12.5, fontWeight: 700, opacity: 0.85 }}>{date}</div>
             </div>
 
-            <div style={{ width: 68, height: 68, borderRadius: "50%", background: T.hl, color: "#232B5E", border: `2px solid ${T.border}`, boxShadow: `2px 2px 0 ${T.border}`, display: "grid", placeItems: "center", marginTop: 18 }}>
+            <div style={{ width: 68, height: 68, borderRadius: "50%", background: T.hl, color: T.onHl, border: `2px solid ${T.border}`, boxShadow: `2px 2px 0 ${T.border}`, display: "grid", placeItems: "center", marginTop: 18 }}>
               <NotebookText size={30} />
             </div>
             <div style={{ fontFamily: HEAD, fontSize: 28, lineHeight: 1.1, marginTop: 8 }}>Nota Admin</div>
@@ -156,7 +156,7 @@ export default function App() {
     document.body.style.background = T.desk;
     document.documentElement.style.background = T.desk;
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#12141D" : "#232B5E");
+    if (meta) meta.setAttribute("content", dark ? "#02080c" : "#232B5E");
   }, [dark, T.desk]);
 
   const flashToast = (msg) => { setToast(msg); setTimeout(() => setToast(""), 2200); };
@@ -292,7 +292,7 @@ export default function App() {
       <div className="nota-app">
         <header className="nota-top">
           <button onClick={() => setSidebarOpen(true)} aria-label="Menu" style={circleBtn}><Menu size={19} /></button>
-          <div style={{ width: 40, height: 40, borderRadius: "50%", background: T.hl, display: "grid", placeItems: "center", color: "#232B5E", flex: "none" }}>
+          <div style={{ width: 40, height: 40, borderRadius: "50%", background: T.hl, display: "grid", placeItems: "center", color: T.onHl, flex: "none" }}>
             <NotebookText size={20} />
           </div>
           <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "baseline", gap: 8, whiteSpace: "nowrap", overflow: "hidden" }}>
@@ -338,7 +338,7 @@ export default function App() {
             style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: 270, maxWidth: "85vw", background: T.bg, borderRight: `2px solid ${T.border}`, boxShadow: `4px 0 0 ${T.border}`, padding: "calc(16px + env(safe-area-inset-top, 0px)) 16px 20px", display: "flex", flexDirection: "column" }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 22 }}>
-              <div style={{ width: 40, height: 40, borderRadius: "50%", background: T.hl, display: "grid", placeItems: "center", color: "#232B5E" }}>
+              <div style={{ width: 40, height: 40, borderRadius: "50%", background: T.hl, display: "grid", placeItems: "center", color: T.onHl }}>
                 <NotebookText size={20} />
               </div>
               <span style={{ fontFamily: HEAD, fontSize: 30, lineHeight: 1, color: T.border }}>Nota</span>
@@ -359,7 +359,7 @@ export default function App() {
           className="nota-toast" role="status"
           style={{ position: "fixed", bottom: "calc(100px + env(safe-area-inset-bottom, 0px))", left: "50%", transform: "translateX(-50%)", width: "min(440px, calc(100% - 28px))", background: toastBad ? T.pink : T.bgElevated, color: toastBad ? T.onPastel : T.ink, border: `2px solid ${T.border}`, borderRadius: 16, padding: "10px 14px", boxShadow: T.shadow, fontWeight: 700, fontSize: 14, display: "flex", alignItems: "center", gap: 8, zIndex: 45 }}
         >
-          {!toastBad && <span style={{ width: 22, height: 22, borderRadius: "50%", background: T.mint, color: "#232B5E", display: "grid", placeItems: "center", flex: "none", border: `2px solid ${T.border}` }}><Check size={12} strokeWidth={3} /></span>}
+          {!toastBad && <span style={{ width: 22, height: 22, borderRadius: "50%", background: T.mint, color: T.onPastel, display: "grid", placeItems: "center", flex: "none", border: `2px solid ${T.border}` }}><Check size={12} strokeWidth={3} /></span>}
           {toast}
         </div>
       )}

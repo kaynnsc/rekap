@@ -16,22 +16,24 @@ export const THEMES = {
     ink: "#26304F", inkMuted: "#66728F", inkFaint: "#66728F",
     accent: "#232B5E", onAccent: "#FDFCF8", accentSoft: "#C9E3FB",
     positive: "#1C8A5E", negative: "#C0392B", dangerSoft: "#FFC8D6",
-    hl: "#FFE76B", pink: "#FFC8D6", peach: "#FFDDBF", butter: "#FFF0A8", mint: "#BFEBD9", sky: "#C9E3FB", lav: "#DDD3F8",
+    hl: "#FFE76B", onHl: "#232B5E", pink: "#FFC8D6", peach: "#FFDDBF", butter: "#FFF0A8", mint: "#BFEBD9", sky: "#C9E3FB", lav: "#DDD3F8",
     onPastel: "#232B5E", shadow: "3px 3px 0 #232B5E", cover: "#232B5E",
     face: "#DDE3F3", bl: "#FFFFFF", bdk: "#7B86A8", fbg: "#FFFFFF",
     overlay: "rgba(10,15,40,0.55)", isDark: false,
   },
+  // Dark theme palette: text #def0f9, background #02080c, primary #91caea, secondary #871a6f, accent #db464c
   dark: {
-    desk: "#04050A", bg: "#12141D", bgElevated: "#1E2232", card: "#1E2232",
-    rule: "#1F2333", margin: "#D0686C",
-    border: "#CBD0E4", cardBorder: "#3A4160",
-    ink: "#F5F6FB", inkMuted: "#B0B7CE", inkFaint: "#B0B7CE",
-    accent: "#CBD0E4", onAccent: "#12141D", accentSoft: "#33577A",
-    positive: "#67C79B", negative: "#E58A84", dangerSoft: "#6E4558",
-    hl: "#E2BE4E", pink: "#6E4558", peach: "#70533C", butter: "#6A5E2E", mint: "#2F6552", sky: "#33577A", lav: "#554C86",
-    onPastel: "#F5F6FB", shadow: "3px 3px 0 #CBD0E4", cover: "#171A2B",
-    face: "#232739", bl: "#2E3550", bdk: "#050507", fbg: "#0B0C10",
-    overlay: "rgba(0,0,0,0.65)", isDark: true,
+    desk: "#010406", bg: "#02080c", bgElevated: "#0A151D", card: "#0A151D",
+    rule: "#0B1822", margin: "#db464c",
+    border: "#91caea", cardBorder: "#1F3A4B",
+    ink: "#def0f9", inkMuted: "#9FB6C3", inkFaint: "#9FB6C3",
+    accent: "#91caea", onAccent: "#02080c", accentSoft: "#14394F",
+    positive: "#6FD3A0", negative: "#E8666B", dangerSoft: "#5A1F2B",
+    hl: "#871a6f", onHl: "#def0f9",
+    pink: "#5A1F2B", peach: "#4C2E1E", butter: "#4F4216", mint: "#124236", sky: "#14394F", lav: "#4B1A47",
+    onPastel: "#def0f9", shadow: "3px 3px 0 #91caea", cover: "#0E2B3D",
+    face: "#102431", bl: "#2A4B60", bdk: "#0A1A24", fbg: "#02080c",
+    overlay: "rgba(0,4,8,0.72)", isDark: true,
   },
 };
 
@@ -75,7 +77,7 @@ select option { color: #26304F; background: #fff; }
   flex: 1; position: relative; min-height: 54px; display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 1px; border: 0; background: transparent; border-radius: 99px; font: 800 10px ${BODY}; color: ${T.inkMuted}; cursor: pointer;
 }
-.nota-nav button[aria-pressed="true"] { background: ${T.hl}; color: #232B5E; }
+.nota-nav button[aria-pressed="true"] { background: ${T.hl}; color: ${T.onHl}; }
 .nota-badge {
   position: absolute; top: 2px; right: 16%; background: ${T.margin}; color: #fff; font: 800 10px ${BODY};
   border-radius: 99px; min-width: 17px; height: 17px; display: grid; place-items: center; padding: 0 4px;
@@ -93,7 +95,7 @@ select option { color: #26304F; background: #fff; }
 .nota-label u { text-decoration-color: ${T.hl}; text-decoration-thickness: 6px; text-underline-offset: -3px; text-decoration-skip-ink: none; }
 .nota-label small { font-size: 12px; font-weight: 700; }
 .nota-cover .nota-tag {
-  position: absolute; left: 8px; top: 6px; background: ${T.hl}; color: #232B5E; font: 800 10px ${BODY};
+  position: absolute; left: 8px; top: 6px; background: ${T.hl}; color: ${T.onHl}; font: 800 10px ${BODY};
   padding: 1px 7px; border-radius: 5px; transform: rotate(-4deg);
 }
 
@@ -166,7 +168,7 @@ export function iconOnlyBtn(T, active) {
   return {
     display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: 12,
     border: `2px solid ${T.border}`, background: active ? T.hl : T.bgElevated, cursor: "pointer",
-    color: active ? "#232B5E" : T.ink, flexShrink: 0, position: "relative", padding: 0,
+    color: active ? T.onHl : T.ink, flexShrink: 0, position: "relative", padding: 0,
   };
 }
 export function filterSelectStyle(T) {
@@ -231,7 +233,7 @@ export function Modal({ children, onClose, title, T, icon, z = 50 }) {
         className="nota-sheet" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}
         style={{ width: "min(460px, 100%)", maxHeight: "88vh", display: "flex", flexDirection: "column", background: T.bg, border: `2px solid ${T.border}`, borderRadius: 16, boxShadow: `5px 5px 0 ${T.border}`, overflow: "hidden" }}
       >
-        <div style={{ background: T.hl, color: "#232B5E", borderBottom: `2px solid ${T.border}`, padding: "8px 8px 8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <div style={{ background: T.hl, color: T.onHl, borderBottom: `2px solid ${T.border}`, padding: "8px 8px 8px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
           <h3 style={{ fontFamily: HEAD, fontWeight: 400, fontSize: 25, margin: 0, display: "flex", alignItems: "center", gap: 8, lineHeight: 1.2 }}>{icon}{title}</h3>
           <button onClick={onClose} aria-label="Close" style={{ ...iconBtnStyle(T), width: 36, height: 36, color: T.ink }}><X size={16} /></button>
         </div>
